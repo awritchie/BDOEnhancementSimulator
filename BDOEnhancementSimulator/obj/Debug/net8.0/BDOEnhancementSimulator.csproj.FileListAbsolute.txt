@@ -1,0 +1,15 @@
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\bin\Debug\net8.0\BDOEnhancementSimulator.exe
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\bin\Debug\net8.0\BDOEnhancementSimulator.deps.json
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\bin\Debug\net8.0\BDOEnhancementSimulator.runtimeconfig.json
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\bin\Debug\net8.0\BDOEnhancementSimulator.dll
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\bin\Debug\net8.0\BDOEnhancementSimulator.pdb
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.AssemblyInfoInputs.cache
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.AssemblyInfo.cs
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.csproj.CoreCompileInputs.cache
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.sourcelink.json
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.dll
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\refint\BDOEnhancementSimulator.dll
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.pdb
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\BDOEnhancementSimulator.genruntimeconfig.cache
+D:\Projects\BDOEnhancementSimulator\BDOEnhancementSimulator\obj\Debug\net8.0\ref\BDOEnhancementSimulator.dll
