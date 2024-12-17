@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Playground;
+using BDOEnhancementSimulator;
 
 const uint SimulationSize = 100000;
 

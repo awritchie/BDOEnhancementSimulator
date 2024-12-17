@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 
-namespace Playground;
+namespace BDOEnhancementSimulator;
 
 public class SimulatorV2(uint size)
 {

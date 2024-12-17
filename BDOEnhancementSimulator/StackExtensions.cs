@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace Playground;
+namespace BDOEnhancementSimulator;
 
 public static class StackExtensions
 {
