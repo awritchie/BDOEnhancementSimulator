@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace BDOEnhancementSimulator;
 
-public class SimulatorV2(uint size)
+public class Simulator(uint size)
 {
     public async Task<IEnumerable<SimulationSummary>> Start(IEnumerable<SimulationParameters> parameters, bool useParallelization = true)
     {

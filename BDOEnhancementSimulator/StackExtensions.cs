@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Text;
 
 namespace BDOEnhancementSimulator;
@@ -70,7 +69,17 @@ public record EnhancementDetails(
     uint Agris)
 {
     private readonly double _baseRate = BasePercent * 0.01d;
-    public double SuccessRate(uint stack) => _baseRate + 0.1d * _baseRate * stack;
+    private readonly uint _softCap = Convert.ToUInt32(Math.Ceiling((0.70d - (BasePercent * 0.01d)) / (0.001d * BasePercent)));
+    public double SuccessRate(uint stack)
+    {
+        if (stack > _softCap)
+        {
+            var capped = _baseRate + 0.1d * (_baseRate * _softCap) + (0.1d * 0.2d * _baseRate * (stack - _softCap));           
+            return capped > 0.9 ? 0.9 : capped;
+        }
+        var result = _baseRate + 0.1d * _baseRate * stack;
+        return result;
+    }
 }
 
 public record SimulationParameters(
@@ -87,7 +96,7 @@ public class SimulationSummary(uint size, SimulationResult result)
 {
     public SimulationResult Result => result;
     public uint Size => size;
-    public double Average { get; } = result.Counts.Aggregate(0d, (avg, setCount) => avg + (setCount.Key * setCount.Value / (double)size));
+    public double Average { get; } = result.Counts.Aggregate(0d, (avg, setCount) => avg + (setCount.Key * setCount.Value / (double) size));
     public uint Median { get; } = result.Counts.OrderBy(x => x.Key).Aggregate(new KeyValuePair<uint, uint>(), (acc, setCount) => acc.Value > size * 0.5 ? acc : new KeyValuePair<uint, uint>(setCount.Key, acc.Value + setCount.Value)).Key;
 }
 
@@ -107,7 +116,17 @@ public static class SimulationSummaryExtensions
     public static double MedianCronsConsumed(this SimulationSummary result) => result.Median * result.Result.Parameters.EnhancementDetails.Crons;
     public static double MedianEnhancementMaterialCost(this SimulationSummary result) => result.Median * result.Result.Parameters.EnhancementDetails.EnhancementMaterials;
     public static double InitialStackSuccessRate(this SimulationSummary result) => result.Result.Parameters.EnhancementDetails.SuccessRate(result.Result.Parameters.StackSize);
-    public static double FullPityRate(this SimulationSummary result) => 1d * result.Result.Counts[result.Result.Parameters.EnhancementDetails.Agris + 1] / result.Size;
+    public static double FullPityRate(this SimulationSummary result)
+    {
+        var pityKey = result.Result.Parameters.EnhancementDetails.Agris + 1;
+        if (result.Result.Counts.TryGetValue(pityKey, out var pityCount))
+        {
+            return 1d * pityCount / result.Size;
+        }
+
+        var approx = Math.Pow(1 - result.InitialStackSuccessRate(), result.Result.Parameters.EnhancementDetails.Agris);
+        return approx;
+    }
 
     public static string BuildReport(this IEnumerable<SimulationSummary> results)
     {
@@ -138,7 +157,6 @@ public static class SimulationSummaryExtensions
                 result.Result.Parameters.StackSize.ToString("N0"),
                 result.InitialStackSuccessRate().ToString("P4"),
                 result.FullPityRate().ToString("P4"),
-                (1 / result.InitialStackSuccessRate()).ToString("F2"),
                 result.Average.ToString("F6"),
                 result.AverageCronsConsumed().ToString("F6"),
                 result.AverageEnhancementMaterialCost().ToString("F6"),
